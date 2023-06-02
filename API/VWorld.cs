@@ -1,7 +1,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-namespace Wetstone.API;
+namespace Bloodstone.API;
 
 /// <summary>
 /// Various utilities for interacting with the Unity ECS world.

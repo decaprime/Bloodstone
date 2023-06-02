@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ProjectM.Network;
 using Stunlock.Network;
 
-namespace Wetstone.Network;
+namespace Bloodstone.Network;
 
 // Tracks internal registered message types and their event handlers.
 internal class MessageRegistry

@@ -2,13 +2,13 @@
 using System;
 using ProjectM.Network;
 using Stunlock.Network;
-using Wetstone.Network;
+using Bloodstone.Network;
 
-namespace Wetstone.API;
+namespace Bloodstone.API;
 
 /// <summary>
 /// Interface to be implemented for any type that you'd like to send over
-/// the network through Wetstone. Note that it is not recommended that you
+/// the network through Bloodstone. Note that it is not recommended that you
 /// implement this, unless you have a good reason to. VNetworkRegistry and
 /// VNetwork have built-in support for sending blittable structs without any
 /// additional effort.
@@ -138,7 +138,7 @@ public static class VNetworkRegistry
 /// <summary>
 /// Main class for sending network messages. To send a network message, make
 /// sure you register the type with VNetworkRegistry before you send it, then
-/// simply call the appropriate send class. Wetstone will take care of the rest.
+/// simply call the appropriate send class. Bloodstone will take care of the rest.
 /// </summary>
 public static class VNetwork
 {

@@ -2,9 +2,9 @@
 using System;
 using System.Runtime.InteropServices;
 using Stunlock.Network;
-using Wetstone.API;
+using Bloodstone.API;
 
-namespace Wetstone.Network;
+namespace Bloodstone.Network;
 
 // Helper class that serializes a blittable type.
 internal class VBlittableNetworkMessage<T> : VNetworkMessage

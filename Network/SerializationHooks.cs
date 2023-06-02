@@ -5,17 +5,17 @@ using ProjectM.Network;
 using Stunlock.Network;
 using Unity.Collections;
 using Unity.Entities;
-using Wetstone.API;
-using Wetstone.Util;
+using Bloodstone.API;
+using Bloodstone.Util;
 using static NetworkEvents_Serialize;
 
-namespace Wetstone.Network;
+namespace Bloodstone.Network;
 
 /// Contains the serialization hooks for custom packets.
 internal static class SerializationHooks
 {
     // chosen by fair dice roll
-    internal const int WETSTONE_NETWORK_EVENT_ID = 0x000FD00D;
+    internal const int Bloodstone_NETWORK_EVENT_ID = 0x000FD00D;
 
     private static INativeDetour? _serializeDetour;
     private static INativeDetour? _deserializeDetour;
@@ -45,7 +45,7 @@ internal static class SerializationHooks
     public unsafe static void SerializeHook(IntPtr entityManager, NetworkEventType networkEventType, ref NetBufferOut netBufferOut, Entity entity)
     {
         // if this is not a custom event, just call the original function
-        if (networkEventType.EventId != SerializationHooks.WETSTONE_NETWORK_EVENT_ID)
+        if (networkEventType.EventId != SerializationHooks.Bloodstone_NETWORK_EVENT_ID)
         {
             SerializeOriginal!(entityManager, networkEventType, ref netBufferOut, entity);
             return;
@@ -55,7 +55,7 @@ internal static class SerializationHooks
         var data = (CustomNetworkEvent)VWorld.Server.EntityManager.GetComponentObject<Il2CppSystem.Object>(entity, CustomNetworkEvent.ComponentType);
 
         // write out the event ID and the data
-        netBufferOut.Write((uint)SerializationHooks.WETSTONE_NETWORK_EVENT_ID);
+        netBufferOut.Write((uint)SerializationHooks.Bloodstone_NETWORK_EVENT_ID);
         data.Serialize(ref netBufferOut);
     }
 
@@ -69,7 +69,7 @@ internal static class SerializationHooks
     public unsafe static void DeserializeHook(IntPtr entityManager, IntPtr commandBuffer, ref NetBufferIn netBufferIn, DeserializeNetworkEventParams eventParams)
     {
         var eventId = netBufferIn.ReadUInt32();
-        if (eventId != SerializationHooks.WETSTONE_NETWORK_EVENT_ID)
+        if (eventId != SerializationHooks.Bloodstone_NETWORK_EVENT_ID)
         {
             // rewind the buffer
             netBufferIn.m_readPosition -= 32;
@@ -93,8 +93,8 @@ internal static class SerializationHooks
             }
             catch (Exception ex)
             {
-                WetstonePlugin.Logger.LogError($"Error handling incoming network event {typeName}:");
-                WetstonePlugin.Logger.LogError(ex);
+                BloodstonePlugin.Logger.LogError($"Error handling incoming network event {typeName}:");
+                BloodstonePlugin.Logger.LogError(ex);
             }
         }
     }

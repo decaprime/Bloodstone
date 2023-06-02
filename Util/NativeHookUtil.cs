@@ -3,7 +3,7 @@ using HarmonyLib;
 using System;
 using System.Reflection;
 
-namespace Wetstone.Util;
+namespace Bloodstone.Util;
 
 public static class NativeHookUtil
 {
@@ -21,7 +21,7 @@ public static class NativeHookUtil
     public static INativeDetour Detour<T>(MethodInfo method, T to, out T original) where T : System.Delegate?
     {
         var address = Il2CppMethodResolver.ResolveFromMethodInfo(method);
-        WetstonePlugin.Logger.LogInfo($"Detouring {method.DeclaringType?.FullName}.{method.Name} at {address.ToString("X")}");
+        BloodstonePlugin.Logger.LogInfo($"Detouring {method.DeclaringType?.FullName}.{method.Name} at {address.ToString("X")}");
         return INativeDetour.CreateAndApply(address, to, out original);
     }
 }

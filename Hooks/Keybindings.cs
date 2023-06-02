@@ -11,9 +11,9 @@ using Stunlock.Localization;
 using StunShared.UI;
 using TMPro;
 using UnityEngine;
-using Wetstone.API;
+using Bloodstone.API;
 
-namespace Wetstone.Hooks;
+namespace Bloodstone.Hooks;
 
 /// <summary>
 /// Properly hooking keybinding menu in V Rising is a major pain in the ass. The
@@ -46,7 +46,7 @@ static class Keybindings
 
         unsafe
         {
-            _detour = Wetstone.Util.NativeHookUtil.Detour(typeof(InputSystem), "TryGetInputFlagLocalization", TryGetInputFlagLocalization_Hook, out TryGetInputFlagLocalization_Original);
+            _detour = Bloodstone.Util.NativeHookUtil.Detour(typeof(InputSystem), "TryGetInputFlagLocalization", TryGetInputFlagLocalization_Hook, out TryGetInputFlagLocalization_Original);
         }
 
         _harmony = Harmony.CreateAndPatchAll(typeof(Keybindings));

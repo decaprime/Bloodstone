@@ -2,7 +2,7 @@ using ProjectM;
 using ProjectM.Network;
 using Unity.Entities;
 
-namespace Wetstone.API;
+namespace Bloodstone.API;
 
 /// <summary>
 /// Various extensions to make it easier to work with VRising APIs.

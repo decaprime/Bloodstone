@@ -2,30 +2,30 @@
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
-using Wetstone.API;
+using Bloodstone.API;
 
-namespace Wetstone
+namespace Bloodstone
 {
     [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
-    public class WetstonePlugin : BasePlugin
+    public class BloodstonePlugin : BasePlugin
     {
 #nullable disable
         public static ManualLogSource Logger { get; private set; }
-        internal static WetstonePlugin Instance { get; private set; }
+        internal static BloodstonePlugin Instance { get; private set; }
 #nullable enable
 
         private ConfigEntry<bool> _enableReloadCommand;
         private ConfigEntry<string> _reloadCommand;
         private ConfigEntry<string> _reloadPluginsFolder;
 
-        public WetstonePlugin() : base()
+        public BloodstonePlugin() : base()
         {
-            WetstonePlugin.Logger = Log;
+            BloodstonePlugin.Logger = Log;
             Instance = this;
 
             _enableReloadCommand = Config.Bind("General", "EnableReloading", true, "Whether to enable the reloading feature (both client and server).");
             _reloadCommand = Config.Bind("General", "ReloadCommand", "!reload", "Server text command to reload plugins. User must be an admin.");
-            _reloadPluginsFolder = Config.Bind("General", "ReloadablePluginsFolder", "BepInEx/WetstonePlugins", "The folder to (re)load plugins from, relative to the game directory.");
+            _reloadPluginsFolder = Config.Bind("General", "ReloadablePluginsFolder", "BepInEx/BloodstonePlugins", "The folder to (re)load plugins from, relative to the game directory.");
         }
 
         public override void Load()
@@ -46,7 +46,7 @@ namespace Wetstone
             Hooks.GameFrame.Initialize();
             Network.SerializationHooks.Initialize();
 
-            Logger.LogInfo($"Wetstone v{MyPluginInfo.PLUGIN_VERSION} loaded.");
+            Logger.LogInfo($"Bloodstone v{MyPluginInfo.PLUGIN_VERSION} loaded.");
 
             // NOTE: MUST BE LAST. This initializes plugins that depend on our state being set up.
             if (VWorld.IsClient || _enableReloadCommand.Value)

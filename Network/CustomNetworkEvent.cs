@@ -2,9 +2,9 @@ using Il2CppInterop.Runtime;
 using Il2CppInterop.Runtime.Injection;
 using Stunlock.Network;
 using Unity.Entities;
-using Wetstone.API;
+using Bloodstone.API;
 
-namespace Wetstone.Network;
+namespace Bloodstone.Network;
 
 /// <summary>
 /// Custom network event component. We attach this to entities to trick
@@ -51,8 +51,8 @@ internal class CustomNetworkEvent : Il2CppSystem.Object
         }
         catch (System.Exception ex)
         {
-            WetstonePlugin.Logger.LogError($"Failed to serialize network event {key}:");
-            WetstonePlugin.Logger.LogError(ex);
+            BloodstonePlugin.Logger.LogError($"Failed to serialize network event {key}:");
+            BloodstonePlugin.Logger.LogError(ex);
         }
     }
 

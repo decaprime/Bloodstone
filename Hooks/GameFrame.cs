@@ -2,7 +2,7 @@ using Il2CppInterop.Runtime.Injection;
 using System;
 using UnityEngine;
 
-namespace Wetstone.Hooks;
+namespace Bloodstone.Hooks;
 
 public delegate void GameFrameUpdateEventHandler();
 
@@ -40,8 +40,8 @@ public class GameFrame : MonoBehaviour
         }
         catch (Exception ex)
         {
-            WetstonePlugin.Logger.LogError("Error dispatching OnUpdate event:");
-            WetstonePlugin.Logger.LogError(ex);
+            BloodstonePlugin.Logger.LogError("Error dispatching OnUpdate event:");
+            BloodstonePlugin.Logger.LogError(ex);
         }
     }
 
@@ -53,8 +53,8 @@ public class GameFrame : MonoBehaviour
         }
         catch (Exception ex)
         {
-            WetstonePlugin.Logger.LogError("Error dispatching OnLateUpdate event:");
-            WetstonePlugin.Logger.LogError(ex);
+            BloodstonePlugin.Logger.LogError("Error dispatching OnLateUpdate event:");
+            BloodstonePlugin.Logger.LogError(ex);
         }
     }
 
@@ -65,7 +65,7 @@ public class GameFrame : MonoBehaviour
             ClassInjector.RegisterTypeInIl2Cpp<GameFrame>();
         }
 
-        _instance = WetstonePlugin.Instance.AddComponent<GameFrame>();
+        _instance = BloodstonePlugin.Instance.AddComponent<GameFrame>();
     }
 
     public static unsafe void Uninitialize()

@@ -7,10 +7,10 @@ using BepInEx;
 using BepInEx.Unity.IL2CPP;
 using Mono.Cecil;
 using UnityEngine;
-using Wetstone.API;
-using Wetstone.Hooks;
+using Bloodstone.API;
+using Bloodstone.Hooks;
 
-namespace Wetstone.Features;
+namespace Bloodstone.Features;
 
 internal static class Reload
 {
@@ -35,12 +35,12 @@ internal static class Reload
         {
             _clientReloadKeybinding = KeybindManager.Register(new()
             {
-                Id = "xyz.molenzwiebel.wetstone.reload",
-                Category = "Wetstone",
+                Id = "gg.deca.Bloodstone.reload",
+                Category = "Bloodstone",
                 Name = "Reload Plugins",
                 DefaultKeybinding = KeyCode.F6,
             });
-            _clientBehavior = WetstonePlugin.Instance.AddComponent<ReloadBehaviour>();
+            _clientBehavior = BloodstonePlugin.Instance.AddComponent<ReloadBehaviour>();
         }
 
         LoadPlugins();
@@ -84,7 +84,7 @@ internal static class Reload
 
             if (!plugin.Unload())
             {
-                WetstonePlugin.Logger.LogWarning($"Plugin {plugin.GetType().FullName} does not support unloading, skipping...");
+                BloodstonePlugin.Logger.LogWarning($"Plugin {plugin.GetType().FullName} does not support unloading, skipping...");
             }
             else
             {
@@ -122,7 +122,7 @@ internal static class Reload
             // skip plugins not marked as reloadable
             if (!pluginType.GetCustomAttributes<ReloadableAttribute>().Any())
             {
-                WetstonePlugin.Logger.LogWarning($"Plugin {pluginType.FullName} is not marked as reloadable, skipping...");
+                BloodstonePlugin.Logger.LogWarning($"Plugin {pluginType.FullName} is not marked as reloadable, skipping...");
                 continue;
             }
 
@@ -144,12 +144,12 @@ internal static class Reload
                     runOnInitialized.OnGameInitialized();
                 }
 
-                WetstonePlugin.Logger.LogInfo($"Loaded plugin {pluginType.FullName}");
+                BloodstonePlugin.Logger.LogInfo($"Loaded plugin {pluginType.FullName}");
             }
             catch (Exception ex)
             {
-                WetstonePlugin.Logger.LogError($"Plugin {pluginType.FullName} threw an exception during initialization:");
-                WetstonePlugin.Logger.LogError(ex);
+                BloodstonePlugin.Logger.LogError($"Plugin {pluginType.FullName} threw an exception during initialization:");
+                BloodstonePlugin.Logger.LogError(ex);
             }
         }
 
@@ -162,7 +162,7 @@ internal static class Reload
         {
             if (_clientReloadKeybinding.IsPressed)
             {
-                WetstonePlugin.Logger.LogInfo("Reloading client plugins...");
+                BloodstonePlugin.Logger.LogInfo("Reloading client plugins...");
 
                 UnloadPlugins();
                 LoadPlugins();

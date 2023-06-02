@@ -1,4 +1,4 @@
-namespace Wetstone.API;
+namespace Bloodstone.API;
 
 /// <summary>
 /// Helper interface for plugins that wish to run something once the
@@ -9,7 +9,7 @@ namespace Wetstone.API;
 /// is nice to have.
 ///
 /// This interface will run your code both when it is loaded normally (i.e.
-/// as a normal BepInEx plugin) and when it is reloaded through the Wetstone
+/// as a normal BepInEx plugin) and when it is reloaded through the Bloodstone
 /// reloading facilities (see also the Reloadable attribute). You do not need
 /// to attach an event handler anywhere, we'll magically call your plugin.
 ///

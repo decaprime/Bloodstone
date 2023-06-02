@@ -1,8 +1,8 @@
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
-using Wetstone.API;
+using Bloodstone.API;
 
-namespace Wetstone.Hooks;
+namespace Bloodstone.Hooks;
 
 /// <summary>
 /// Hook responsible for handling calls to IRunOnInitialized.
@@ -27,7 +27,7 @@ static class OnInitialize
 
     private static void InvokePlugins()
     {
-        WetstonePlugin.Logger.LogInfo("Game has bootstrapped. Worlds and systems now exist.");
+        BloodstonePlugin.Logger.LogInfo("Game has bootstrapped. Worlds and systems now exist.");
 
         if (HasInitialized) return;
         HasInitialized = true;

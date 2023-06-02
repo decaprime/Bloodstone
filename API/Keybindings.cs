@@ -8,12 +8,12 @@ using ProjectM;
 using Standart.Hash.xxHash;
 using UnityEngine;
 
-namespace Wetstone.API;
+namespace Bloodstone.API;
 
 /// <summary>
 /// Manager class responsible for tracking custom plugin keybindings in 
 /// client-side mods. Generally, you just need to `Register` your custom
-/// keybinding. Wetstone will ensure that it gets persisted and shows
+/// keybinding. Bloodstone will ensure that it gets persisted and shows
 /// up in the in-client keybindings menu. In order to check whether the
 /// keybinding is pressed, and what it is mapped to, you can use the 
 /// appropriate fields on the Keybinding instance returned from the
@@ -101,8 +101,8 @@ public static class KeybindManager
         }
         catch (Exception ex)
         {
-            WetstonePlugin.Logger.LogError("Error loading keybindings, using defaults: ");
-            WetstonePlugin.Logger.LogError(ex);
+            BloodstonePlugin.Logger.LogError("Error loading keybindings, using defaults: ");
+            BloodstonePlugin.Logger.LogError(ex);
 
             _keybindingValues = new();
         }
@@ -117,8 +117,8 @@ public static class KeybindManager
         }
         catch (Exception ex)
         {
-            WetstonePlugin.Logger.LogError("Error saving custom keybindings: ");
-            WetstonePlugin.Logger.LogError(ex);
+            BloodstonePlugin.Logger.LogError("Error saving custom keybindings: ");
+            BloodstonePlugin.Logger.LogError(ex);
         }
     }
 }

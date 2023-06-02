@@ -2,9 +2,9 @@
 using System;
 using ProjectM.Network;
 using Unity.Entities;
-using Wetstone.API;
+using Bloodstone.API;
 
-namespace Wetstone.Network;
+namespace Bloodstone.Network;
 
 // Helper class that creates entities to dispatch 
 // network events to VRising's network system, so that
@@ -35,7 +35,7 @@ internal static class EventDispatcher
 
         em.SetComponentData<NetworkEventType>(entity, new()
         {
-            EventId = SerializationHooks.WETSTONE_NETWORK_EVENT_ID,
+            EventId = SerializationHooks.Bloodstone_NETWORK_EVENT_ID,
             IsAdminEvent = false,
             IsDebugEvent = false
         });
@@ -65,7 +65,7 @@ internal static class EventDispatcher
 
         em.SetComponentData<NetworkEventType>(entity, new()
         {
-            EventId = SerializationHooks.WETSTONE_NETWORK_EVENT_ID,
+            EventId = SerializationHooks.Bloodstone_NETWORK_EVENT_ID,
             IsAdminEvent = false,
             IsDebugEvent = false
         });

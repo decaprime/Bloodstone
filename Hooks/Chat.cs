@@ -4,9 +4,9 @@ using HarmonyLib;
 using ProjectM;
 using ProjectM.Network;
 using Unity.Entities;
-using Wetstone.API;
+using Bloodstone.API;
 
-namespace Wetstone.Hooks;
+namespace Bloodstone.Hooks;
 
 public static class Chat
 {
@@ -23,7 +23,7 @@ public static class Chat
     public static unsafe void Initialize()
     {
         if (_harmony != null)
-            throw new Exception("Detour already initialized. You don't need to call this. The Wetstone plugin will do it for you.");
+            throw new Exception("Detour already initialized. You don't need to call this. The Bloodstone plugin will do it for you.");
 
         _harmony = Harmony.CreateAndPatchAll(typeof(Chat));
     }
@@ -31,7 +31,7 @@ public static class Chat
     public static unsafe void Uninitialize()
     {
         if (_harmony == null)
-            throw new Exception("Detour wasn't initialized. Are you trying to unload Wetstone twice?");
+            throw new Exception("Detour wasn't initialized. Are you trying to unload Bloodstone twice?");
 
         _harmony.UnpatchSelf();
     }
@@ -47,7 +47,7 @@ public static class Chat
             var fromCharacter = VWorld.Server.EntityManager.GetComponentData<FromCharacter>(entity);
             var ev = new VChatEvent(fromCharacter.User, fromCharacter.Character, chatMessage.MessageText.ToString(), chatMessage.MessageType);
 
-            WetstonePlugin.Logger.LogInfo($"[Chat] [{ev.Type}] {ev.User.CharacterName}: {ev.Message}");
+            BloodstonePlugin.Logger.LogInfo($"[Chat] [{ev.Type}] {ev.User.CharacterName}: {ev.Message}");
 
             try
             {
@@ -58,8 +58,8 @@ public static class Chat
             }
             catch (Exception ex)
             {
-                WetstonePlugin.Logger.LogError("Error dispatching chat event:");
-                WetstonePlugin.Logger.LogError(ex);
+                BloodstonePlugin.Logger.LogError("Error dispatching chat event:");
+                BloodstonePlugin.Logger.LogError(ex);
             }
         }
     }
