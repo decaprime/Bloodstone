@@ -1,0 +1,68 @@
+name: Build
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.7
+        with:
+          versionSpec: "5.x"
+
+      - name: Determine Version
+        uses: gittools/actions/gitversion/execute@v0.9.7
+        with:
+          additionalArguments: '/updateprojectfiles /overrideconfig "mode=Mainline"'
+
+      - name: Build (Release)
+        run: dotnet build . --configuration Release -p:Version=$GitVersion_SemVer
+
+      - name: Run Unit Tests
+        run: dotnet test
+
+      - name: Package Nuget
+        run: dotnet pack --configuration Release -p:Version=$GitVersion_SemVer --output ./nuget
+      
+      - name: Upload a Build Artifact
+        if: ${{ !env.ACT && github.event_name == 'push' }}
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          path: ./nuget
+      
+      - name: Push to Nuget
+        if: ${{ !env.ACT && github.event_name == 'push' }}
+        run: dotnet nuget push ./nuget/*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
+        
+      - name: GH Release
+        uses: softprops/action-gh-release@v1
+        if:  ${{ !env.ACT && github.event_name == 'push' }}
+        with:
+          body: Automatic pre-release of ${{ env.GitVersion_SemVer }} for ${{ env.GitVersion_ShortSha }}
+          name: v${{ env.GitVersion_SemVer }}
+          files: ./bin/Release/net6.0/Bloodstone.dll
+          fail_on_unmatched_files: true
+          prerelease: true
+          tag_name: v${{ env.GitVersion_SemVer }}
