@@ -1,4 +1,4 @@
-![bloodstone-banner](https://github.com/decaprime/Bloodstone/assets/62450933/aadc56ce-c929-4d8e-b19d-265a66e849fe)
+![bloodstone-banner](https://i.imgur.com/Py0MwUL.png)
 
 ---
 
