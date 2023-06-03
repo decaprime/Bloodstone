@@ -10,13 +10,13 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.0.9999</Version> <!-- This is local version, otherwise property set by CI -->
+    <Version>0.0.9001</Version> <!-- This is local version, otherwise property set by CI -->
     <PackageId>VRising.Bloodstone</PackageId>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>deca, molenzwiebel</Authors>
     <Company>deca</Company>
     <Description>Plugin framework and general utilities for V Rising mods.</Description>
-    <PackageIcon>icon.png</PackageIcon>
+    <PackageIcon>logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>License</PackageLicenseFile>
     <PackageTags>VRising</PackageTags>
@@ -25,12 +25,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="icon.png" Pack="true" PackagePath="\" />
+    <None Include="logo.png" Pack="true" PackagePath="\" />
     <None Include="README.md" Pack="true" PackagePath="\" />
     <None Include="License" Pack="true" Visible="false" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="logo.png" Pack="true" PackagePath="\" />
+    <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="License" Pack="true" Visible="false" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+  
+    <PackageReference Include="VRising.VampireCommandFramework" Version="0.7.0" />
     <PackageReference Include="VRising.Unhollowed.Client" Version="0.6.1.57247001" />
     <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile" />
     <PackageReference Include="BepInEx.PluginInfoProps" Version="2.1.0" />

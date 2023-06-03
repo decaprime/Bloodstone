@@ -9,6 +9,7 @@ using Mono.Cecil;
 using UnityEngine;
 using Bloodstone.API;
 using Bloodstone.Hooks;
+using VampireCommandFramework;
 
 namespace Bloodstone.Features;
 
@@ -23,13 +24,9 @@ internal static class Reload
 
     internal static List<BasePlugin> _loadedPlugins = new();
 
-    internal static void Initialize(string reloadCommand, string reloadPluginsFolder)
+    internal static void Initialize(string reloadPluginsFolder)
     {
-        _reloadCommand = reloadCommand;
         _reloadPluginsFolder = reloadPluginsFolder;
-
-        // note: no need to remove this on unload, since we'll unload the hook itself anyway
-        Hooks.Chat.OnChatMessage += HandleReloadCommand;
 
         if (VWorld.IsClient)
         {
@@ -48,33 +45,27 @@ internal static class Reload
 
     internal static void Uninitialize()
     {
-        Hooks.Chat.OnChatMessage -= HandleReloadCommand;
-
         if (_clientBehavior != null)
         {
             UnityEngine.Object.Destroy(_clientBehavior);
         }
     }
 
-    private static void HandleReloadCommand(VChatEvent ev)
-    {
-        if (ev.Message != _reloadCommand) return;
-        if (!ev.User.IsAdmin) return; // ignore non-admin reload attempts
+    [Command("reload","re", adminOnly:true)]
+	public static void HandleReloadCommand(ICommandContext ctx)
+	{
+		UnloadPlugins();
+		var loaded = LoadPlugins();
 
-        ev.Cancel();
-
-        UnloadPlugins();
-        var loaded = LoadPlugins();
-
-        if (loaded.Count > 0)
-        {
-            ev.User.SendSystemMessage($"Reloaded {string.Join(", ", loaded)}. See console for details.");
-        }
-        else
-        {
-            ev.User.SendSystemMessage($"Did not reload any plugins because no reloadable plugins were found. Check the console for more details.");
-        }
-    }
+		if (loaded.Count > 0)
+		{
+			ctx.Reply($"Reloaded {string.Join(", ", loaded)}. See console for details.");
+		}
+		else
+		{
+			ctx.Reply($"Did not reload any plugins because no reloadable plugins were found. Check the console for more details.");
+		}
+	}
 
     private static void UnloadPlugins()
     {

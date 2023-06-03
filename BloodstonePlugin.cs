@@ -3,6 +3,7 @@ using BepInEx.Configuration;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
 using Bloodstone.API;
+using Bloodstone.Features;
 
 namespace Bloodstone
 {
@@ -33,6 +34,7 @@ namespace Bloodstone
             // Hooks
             if (VWorld.IsServer)
             {
+                CommandFrameworkRegistration.Initialize();
                 Hooks.Chat.Initialize();
             }
 
@@ -51,7 +53,7 @@ namespace Bloodstone
             // NOTE: MUST BE LAST. This initializes plugins that depend on our state being set up.
             if (VWorld.IsClient || _enableReloadCommand.Value)
             {
-                Features.Reload.Initialize(_reloadCommand.Value, _reloadPluginsFolder.Value);
+                Features.Reload.Initialize(_reloadPluginsFolder.Value);
             }
         }
 
@@ -60,6 +62,7 @@ namespace Bloodstone
             // Hooks
             if (VWorld.IsServer)
             {
+                CommandFrameworkRegistration.Uninitialize();
                 Hooks.Chat.Uninitialize();
             }
 

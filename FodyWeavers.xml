@@ -4,6 +4,7 @@
         <IncludeAssemblies>
             Standart.Hash.xxHash
             System.Text.Json
+            VCF.Core
         </IncludeAssemblies>
     </Costura>
 </Weavers>
