@@ -47,7 +47,7 @@ jobs:
         run: dotnet pack --configuration Release -p:Version=$GitVersion_SemVer --output ./nuget
       
       - name: Upload a Build Artifact
-        if: ${{ !env.ACT && github.event_name == 'push' }}
+        if: ${{ !env.ACT }}
         uses: actions/upload-artifact@v3.1.0
         with:
           path: ./nuget
