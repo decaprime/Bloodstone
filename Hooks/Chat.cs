@@ -25,7 +25,7 @@ public static class Chat
         if (_harmony != null)
             throw new Exception("Detour already initialized. You don't need to call this. The Bloodstone plugin will do it for you.");
 
-        _harmony = Harmony.CreateAndPatchAll(typeof(Chat));
+        _harmony = Harmony.CreateAndPatchAll(typeof(Chat), MyPluginInfo.PLUGIN_GUID);
     }
 
     public static unsafe void Uninitialize()

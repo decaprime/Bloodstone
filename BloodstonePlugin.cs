@@ -7,6 +7,7 @@ using Bloodstone.API;
 namespace Bloodstone
 {
     [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+    [BepInDependency("gg.deca.VampireCommandFramework", BepInDependency.DependencyFlags.SoftDependency)]
     public class BloodstonePlugin : BasePlugin
     {
 #nullable disable
