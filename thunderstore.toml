@@ -5,7 +5,7 @@ schemaVersion = "0.0.1"
 namespace = "deca"
 name = "Bloodstone"
 versionNumber = "0.1.4"
-description = "Plugin framework and general utilities for V Rising mods. Success"
+description = "Plugin framework and general utilities for V Rising mods."
 websiteUrl = "https://github.com/decaprime/Bloodstone"
 containsNsfwContent = false
 
