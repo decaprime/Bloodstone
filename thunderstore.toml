@@ -4,13 +4,13 @@ schemaVersion = "0.0.1"
 [package]
 namespace = "deca"
 name = "Bloodstone"
-versionNumber = "1.2.0"
+versionNumber = "0.1.4"
 description = "Plugin framework and general utilities for V Rising mods. Success"
 websiteUrl = "https://github.com/decaprime/Bloodstone"
 containsNsfwContent = false
 
 [package.dependencies]
-BepInEx-BepInExPack_V_Rising = "1.668.2"
+BepInEx-BepInExPack_V_Rising = "1.668.5"
 
 [build]
 icon = "./icon.png"
@@ -22,6 +22,6 @@ source = "./ReleaseOutput"
 target = ""
 
 [publish]
-repository = "https://thunderstore.io"
+repository = "https://v-rising.thunderstore.io"
 communities = ["v-rising"]
-categories = []
+categories = ["gloomrot-update", "mods", "server", "client"]
