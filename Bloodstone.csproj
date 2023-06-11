@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.0.9999</Version> <!-- This is local version, otherwise property set by CI -->
+    <Version>0.0.9001</Version> <!-- This is local version, otherwise property set by CI -->
     <PackageId>VRising.Bloodstone</PackageId>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>deca, molenzwiebel</Authors>
@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="VRising.VampireCommandFramework" Version="0.7.0" />
     <PackageReference Include="VRising.Unhollowed.Client" Version="0.6.5.57575071" />
     <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile" />
     <PackageReference Include="BepInEx.PluginInfoProps" Version="2.1.0" />
