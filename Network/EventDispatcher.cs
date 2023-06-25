@@ -23,6 +23,7 @@ internal static class EventDispatcher
 
         var em = VWorld.Server.EntityManager;
         var entity = em.CreateEntity(
+            ComponentType.ReadOnly<SendNetworkEventTag>(),
             ComponentType.ReadOnly<NetworkEventType>(),
             ComponentType.ReadOnly<SendEventToUser>(),
             CustomNetworkEvent.ComponentType
@@ -35,7 +36,7 @@ internal static class EventDispatcher
 
         em.SetComponentData<NetworkEventType>(entity, new()
         {
-            EventId = SerializationHooks.Bloodstone_NETWORK_EVENT_ID,
+            EventId = SerializationHooks.BLOODSTONE_NETWORK_EVENT_ID,
             IsAdminEvent = false,
             IsDebugEvent = false
         });
@@ -65,7 +66,7 @@ internal static class EventDispatcher
 
         em.SetComponentData<NetworkEventType>(entity, new()
         {
-            EventId = SerializationHooks.Bloodstone_NETWORK_EVENT_ID,
+            EventId = SerializationHooks.BLOODSTONE_NETWORK_EVENT_ID,
             IsAdminEvent = false,
             IsDebugEvent = false
         });
