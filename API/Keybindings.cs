@@ -28,7 +28,7 @@ public static class KeybindManager
 {
     private static string KeybindingsPath = Path.Join(Paths.ConfigPath, "keybindings.json");
 
-    internal static Dictionary<InputFlag, Keybinding> _keybindingsByFlags = new();
+    internal static Dictionary<ButtonInputAction, Keybinding> _keybindingsByFlags = new();
     internal static Dictionary<int, Keybinding> _keybindingsByGuid = new();
     internal static Dictionary<string, Keybinding> _keybindingsById = new();
 
@@ -181,7 +181,7 @@ public class Keybinding
     public bool IsPressed => UnityEngine.Input.GetKeyDown(Primary) || UnityEngine.Input.GetKeyDown(Secondary);
 
     // Unique XXHash-based inputflag for identification.
-    internal InputFlag InputFlag { get; private set; }
+    internal ButtonInputAction InputFlag { get; private set; }
     // Unique XXHash-based quarter-of-an-assetguid for identification.
     internal int AssetGuid { get; private set; }
 
@@ -204,7 +204,7 @@ public class Keybinding
         do
         {
             invalid = false;
-            foreach (var entry in Enum.GetValues<InputFlag>())
+            foreach (var entry in Enum.GetValues<ButtonInputAction>())
             {
                 if (hash == (ulong)entry)
                 {
@@ -214,7 +214,7 @@ public class Keybinding
             }
         } while (invalid);
 
-        InputFlag = (InputFlag)hash;
+        InputFlag = (ButtonInputAction)hash;
     }
 
     // Ditto, but for asset GUIDs.

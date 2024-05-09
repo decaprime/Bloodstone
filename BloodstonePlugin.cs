@@ -40,7 +40,7 @@ namespace Bloodstone
             if (VWorld.IsClient)
             {
                 API.KeybindManager.Load();
-                Hooks.Keybindings.Initialize();
+                // Hooks.Keybindings.Initialize();
             }
 
             Hooks.OnInitialize.Initialize();

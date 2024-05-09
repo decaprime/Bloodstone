@@ -65,8 +65,9 @@ internal class CustomNetworkEvent : Il2CppSystem.Object
 
         if (TypeManager.FindTypeIndex(il2cppty) == -1)
         {
-            var info = TypeManager.BuildComponentType(il2cppty);
-            TypeManager.AddTypeInfoToTables(il2cppty, info, nameof(CustomNetworkEvent));
+            TypeManager.BuildComponentCache bcc = new();
+            var info = TypeManager.BuildComponentType(il2cppty, bcc);
+            TypeManager.AddTypeInfoToTables(il2cppty, info, nameof(CustomNetworkEvent), 0);
         }
 
         _componentType = new(il2cppty);
