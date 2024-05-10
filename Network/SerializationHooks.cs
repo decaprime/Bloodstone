@@ -171,7 +171,7 @@ internal static class SerializationHooks
                         netBuffer.Write(eventType.EventId);
                         data.Serialize(ref netBuffer);
 
-                        __instance._ServerBootstrapSystem.SendPacketToUser(netBuffer.Data, netBuffer.Data.Length * 8, toUser.UserIndex, true);
+                        __instance._ServerBootstrapSystem.SendPacketToUser(netBuffer.Data, netBuffer.Data.Length * 8, toUser.UserIndex, true, true);
                     }
                     __instance.EntityManager.DestroyEntity(entity);
                 }

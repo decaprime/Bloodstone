@@ -2,6 +2,7 @@ using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Bloodstone.API;
 using ProjectM;
+using Stunlock.Core;
 
 namespace Bloodstone.Hooks;
 
@@ -64,7 +65,7 @@ static class OnInitialize
 
     private static class ClientDetours
     {
-        [HarmonyPatch(typeof(CustomWorldSpawning), nameof(CustomWorldSpawning.AddSystemsToWorld))]
+        [HarmonyPatch(typeof(WorldBootstrapUtilities), nameof(WorldBootstrapUtilities.AddSystemsToWorld))]
         [HarmonyPostfix]
         public static void Initialize()
         {

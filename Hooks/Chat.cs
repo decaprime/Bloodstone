@@ -40,7 +40,7 @@ public static class Chat
     [HarmonyPatch(typeof(ChatMessageSystem), nameof(ChatMessageSystem.OnUpdate))]
     public static void OnUpdatePrefix(ChatMessageSystem __instance)
     {
-        var entities = __instance._ChatMessageQuery.ToEntityArray(Unity.Collections.Allocator.Temp);
+        var entities = __instance.__query_661171423_0.ToEntityArray(Unity.Collections.Allocator.Temp);
         foreach (var entity in entities)
         {
             var chatMessage = VWorld.Server.EntityManager.GetComponentData<ChatMessageEvent>(entity);
