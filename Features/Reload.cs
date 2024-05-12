@@ -40,7 +40,7 @@ internal static class Reload
                 Name = "Reload Plugins",
                 DefaultKeybinding = KeyCode.F6,
             });
-            _clientBehavior = BloodstonePlugin.Instance.AddComponent<ReloadBehaviour>();
+            // _clientBehavior = BloodstonePlugin.Instance.AddComponent<ReloadBehaviour>();
         }
 
         LoadPlugins();
