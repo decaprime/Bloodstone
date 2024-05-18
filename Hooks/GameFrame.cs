@@ -60,12 +60,12 @@ public class GameFrame : MonoBehaviour
 
     public static void Initialize()
     {
-        //if (!ClassInjector.IsTypeRegisteredInIl2Cpp<GameFrame>())
-        //{
-        //    ClassInjector.RegisterTypeInIl2Cpp<GameFrame>();
-        //}
+        if (!ClassInjector.IsTypeRegisteredInIl2Cpp<GameFrame>())
+        {
+            ClassInjector.RegisterTypeInIl2Cpp<GameFrame>();
+        }
 
-		//_instance = BloodstonePlugin.Instance.AddComponent<GameFrame>();
+        _instance = BloodstonePlugin.Instance.AddComponent<GameFrame>();
     }
 
     public static unsafe void Uninitialize()

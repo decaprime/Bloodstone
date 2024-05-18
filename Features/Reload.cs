@@ -36,11 +36,11 @@ internal static class Reload
             _clientReloadKeybinding = KeybindManager.Register(new()
             {
                 Id = "gg.deca.Bloodstone.reload",
-                Category = "Bloodstone",
+                Category = "Bloodstone",    
                 Name = "Reload Plugins",
                 DefaultKeybinding = KeyCode.F6,
             });
-            // _clientBehavior = BloodstonePlugin.Instance.AddComponent<ReloadBehaviour>();
+            _clientBehavior = BloodstonePlugin.Instance.AddComponent<ReloadBehaviour>();
         }
 
         LoadPlugins();
