@@ -42,7 +42,7 @@ static class OnInitialize
             }
         }
 
-        foreach (var plugin in Features.Reload._loadedPlugins)
+        foreach (var plugin in API.Reload.LoadedPlugins)
         {
             if (plugin is IRunOnInitialized runOnInitialized)
             {
