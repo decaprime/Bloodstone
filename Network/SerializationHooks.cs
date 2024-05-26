@@ -94,7 +94,7 @@ internal static class SerializationHooks
         if (MessageRegistry._eventHandlers.ContainsKey(typeName))
         {
             var handler = MessageRegistry._eventHandlers[typeName];
-            var isFromServer = eventParams.FromUserIndex == 0;
+            var isFromServer = eventParams.FromCharacter.User == Entity.Null;
 
             try
             {
@@ -166,12 +166,14 @@ internal static class SerializationHooks
                     {
                         SendEventToUser toUser = *(SendEventToUser*)__instance.EntityManager.GetComponentDataRawRO(entity, toUserTypeIndex);
 
-                        var netBuffer = new NetBufferOut(new NativeList<byte>(16384, Allocator.Temp));
+                        var netBuffer = new NetBufferOut(new NativeArray<byte>(16384, Allocator.Temp));
                         netBuffer.Write((byte)PacketType.Events);
                         netBuffer.Write(eventType.EventId);
                         data.Serialize(ref netBuffer);
 
-                        __instance._ServerBootstrapSystem.SendPacketToUser(netBuffer.Data, netBuffer.Data.Length * 8, toUser.UserIndex, true, true);
+                        // TODO: This throws after 1.0
+                        // __instance._ServerBootstrapSystem.SendPacketToUser(netBuffer.Data, netBuffer.Data.Length * 8, toUser.UserIndex, true, true);
+                        BloodstonePlugin.Logger.LogWarning($"Functionality Disabled: Not sending CustomNetworkEvent to user {toUser.UserIndex}");
                     }
                     __instance.EntityManager.DestroyEntity(entity);
                 }
