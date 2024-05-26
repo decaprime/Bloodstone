@@ -66,7 +66,7 @@ internal class CustomNetworkEvent : UnityEngine.Object
         var typeIndex = TypeManager.FindTypeIndex(il2cppty);
         if (typeIndex.Value < 1)
         {
-			var info = TypeManager.BuildComponentType(il2cppty, new(1));
+            var info = TypeManager.BuildComponentType(il2cppty, new(1));
             TypeManager.AddTypeInfoToTables(il2cppty, info, nameof(CustomNetworkEvent), 0);
         }
 
