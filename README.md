@@ -3,7 +3,7 @@
 
 ![bloodstone-banner](https://i.imgur.com/Py0MwUL.png)
 
-Bloodstone is the successor to Wetstone for Gloomrot.
+Bloodstone is the successor to Wetstone after Gloomrot.
 
 ---
 

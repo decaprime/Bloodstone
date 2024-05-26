@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.0.9999</Version> <!-- This is local version, otherwise property set by CI -->
+    <Version>0.2.9999</Version> <!-- This is local version, otherwise property set by CI -->
     <PackageId>VRising.Bloodstone</PackageId>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>deca, molenzwiebel</Authors>

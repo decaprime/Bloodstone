@@ -94,7 +94,7 @@ internal static class SerializationHooks
         if (MessageRegistry._eventHandlers.ContainsKey(typeName))
         {
             var handler = MessageRegistry._eventHandlers[typeName];
-            var isFromServer = eventParams.FromCharacter.User == Entity.Null;
+			var isFromServer = eventParams.FromUserIndex == 0;
 
             try
             {
@@ -153,7 +153,7 @@ internal static class SerializationHooks
         [HarmonyPatch(typeof(SerializeAndSendServerEventsSystem), nameof(SerializeAndSendServerEventsSystem.OnUpdate))]
         private static void OnUpdatePrefix(SerializeAndSendServerEventsSystem __instance)
         {
-            var entities = __instance._Query.ToEntityArray(Allocator.Temp);
+			var entities = __instance.EntityQueries[1].ToEntityArray(Allocator.Temp);
             var toUserTypeIndex = ComponentType.ReadOnly<SendEventToUser>().TypeIndex;
 
             foreach (var entity in entities)

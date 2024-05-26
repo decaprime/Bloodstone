@@ -32,18 +32,8 @@ Post an issue on the [GitHub repository](https://github.com/decaprime/Bloodstone
 
 ### Changelog
 
-- **1.2.0**
-    - Fixed the `VWorld` helpers to not return stale world instances when disconnecting and reconnecting to servers on a client.
-        - This also resolves a crash when sending custom network messages after disconnecting and reconnecting to a server.
-    - Added the `GameFrame` hook API for easily subscribing to frame callbacks (thanks @adainrivers!)
-    - Included unhollowed assembly DLLs in the search path for reloaded plugins.
-
-- **1.1.0**
-    - Added initial version of networking API for sending network messages between client and server.
-    - Fixed `VWorld.IsClient` and `VWorld.IsServer` to always return correct values.
-    - Exposed `Il2CppMethodResolver` and `NativeHookUtil`.
-    - Added support for the game initialization hook for client-side plugins. The initialization hook will be called on startup, when the default world is initialized.
-    - Disabled reload command by default.
-
-- **1.0.0**
-    - Initial release
+- 0.2.2:
+    - Exposed LoadedPlugins in public API
+- 0.2.1: Initial release for V Rising 1.0
+    - Note: **Partial functionality** no clientside Keybinds or CustomNetworkEvent support yet.
+    - See https://github.com/decaprime/Bloodstone/pull/6 for more details
