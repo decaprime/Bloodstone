@@ -3,6 +3,7 @@ using BepInEx.Configuration;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
 using Bloodstone.API;
+using Bloodstone.Network;
 
 namespace Bloodstone
 {
@@ -41,11 +42,13 @@ namespace Bloodstone
             {
                 API.KeybindManager.Load();
                 // Hooks.Keybindings.Initialize();
+                Hooks.ClientChat.Initialize();
             }
 
             Hooks.OnInitialize.Initialize();
             Hooks.GameFrame.Initialize();
             Network.SerializationHooks.Initialize();
+            MessageUtils.RegisterClientInitialisationType();
 
             Logger.LogInfo($"Bloodstone v{MyPluginInfo.PLUGIN_VERSION} loaded.");
 
@@ -68,11 +71,13 @@ namespace Bloodstone
             {
                 API.KeybindManager.Save();
                 Hooks.Keybindings.Uninitialize();
+                Hooks.ClientChat.Uninitialize();
             }
 
             Hooks.OnInitialize.Uninitialize();
             Hooks.GameFrame.Uninitialize();
             Network.SerializationHooks.Uninitialize();
+            MessageUtils.UnregisterClientInitialisationType();
 
             return true;
         }
